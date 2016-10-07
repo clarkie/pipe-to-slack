@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/clarkie/pipe-to-slack.git"
   },
+  "bin": {
+    "p2s": "index.js"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
