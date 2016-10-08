@@ -2,22 +2,24 @@
 'use strict'
 
 const axios = require('axios');
-const channel = process.argv[2];
 const stdin = process.openStdin();
-const slackHook = '';
+const config = require('home-config').load('.p2s');
+const channel = process.argv[2] || config.defaultChannel;
+const webHook = config.webHook;
 
 let data = '';
-
-stdin.on('data', (chunk) => {
-  axios.post(slackHook, {
-    channel: channel,
-    username: 'Pipe Bot',
-    text: chunk.toString('utf8'),
-    icon_emoji: ':printer:',
+if (channel && webHook) {
+  stdin.on('data', (chunk) => {
+    axios.post(config.webHook, {
+      channel: channel,
+      username: 'Pipe Bot',
+      text: chunk.toString('utf8'),
+      icon_emoji: ':printer:',
+    });
+    data += chunk;
   });
-  data += chunk;
-});
 
-stdin.on('end', () => {
-  console.log('PIPE COMPLETE');
-});
+  stdin.on('end', () => {
+    console.log('PIPE COMPLETE');
+  });
+}

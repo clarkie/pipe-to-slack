@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/clarkie/pipe-to-slack#readme",
   "dependencies": {
-    "axios": "^0.14.0"
+    "axios": "^0.14.0",
+    "home-config": "^0.1.0"
   }
 }
