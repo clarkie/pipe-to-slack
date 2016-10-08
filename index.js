@@ -20,6 +20,6 @@ if (channel && webHook) {
   });
 
   stdin.on('end', () => {
-    console.log('PIPE COMPLETE');
+    console.log('PIPE TO SLACK COMPLETED');
   });
 }
