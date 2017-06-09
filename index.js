@@ -12,7 +12,7 @@ if (channel && webHook) {
   stdin.on('data', (chunk) => {
     axios.post(config.webHook, {
       channel: channel,
-      username: 'Pipe Bot',
+      username: config.username || 'Pipe Bot',
       text: chunk.toString('utf8'),
       icon_emoji: ':printer:',
     });

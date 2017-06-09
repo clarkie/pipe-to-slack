@@ -15,8 +15,9 @@ You'll need to create a `.p2s` file in your home directory (e.g. `~/.p2s`). In h
 ```
 webHook=https://slackWebhookUrl
 defaultChannel=#random
+username="Pipe Bot"
 ```
-*defaultChannel is optional*
+*defaultChannel and username are optional*
 
 ## Usage
 
