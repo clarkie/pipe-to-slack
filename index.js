@@ -7,19 +7,19 @@ const config = require('home-config').load('.p2s');
 const channel = process.argv[2] || config.defaultChannel;
 const webHook = config.webHook;
 
-let data = '';
+let data = Buffer.alloc(0);
 if (channel && webHook) {
   stdin.on('data', (chunk) => {
-    axios.post(config.webHook, {
-      channel: channel,
-      username: config.username || 'Pipe Bot',
-      text: chunk.toString('utf8'),
-      icon_emoji: ':printer:',
-    });
-    data += chunk;
+    data = Buffer.concat([data, chunk]);
   });
 
   stdin.on('end', () => {
+    axios.post(config.webHook, {
+      channel: channel,
+      username: config.username || 'Pipe Bot',
+      text: data.toString('utf8'),
+      icon_emoji: ':printer:',
+    });
     console.log('PIPE TO SLACK COMPLETED');
   });
 }
